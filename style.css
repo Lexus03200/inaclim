@@ -11,7 +11,7 @@
 body { font-family: 'Montserrat', sans-serif; background: var(--gray); color: var(--dark); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-/* HEADER & LOGO */
+/* HEADER & LOGO SANS ESPACE */
 header {
     position: fixed; width: 100%; top: 0; z-index: 1000;
     background: rgba(255, 255, 255, 0.95);
@@ -20,7 +20,7 @@ header {
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-.logo { display: flex; align-items: center; gap: 15px; text-decoration: none; font-weight: 900; font-size: 1.6rem; color: var(--primary); }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; font-size: 1.6rem; color: var(--primary); letter-spacing: -0.5px; }
 .logo span { color: var(--accent); }
 .nav-logo { height: 50px; width: auto; border-radius: 5px; }
 
@@ -28,7 +28,7 @@ nav a { text-decoration: none; color: var(--dark); font-weight: 700; margin-left
 nav a:hover { color: var(--accent); }
 .btn-call { background: var(--primary); color: white !important; padding: 10px 20px; border-radius: 4px; }
 
-/* HERO */
+/* HERO SECTION */
 .hero {
     height: 90vh;
     background: linear-gradient(rgba(0,45,90,0.8), rgba(0,0,0,0.6)), url('poele.jpg');
@@ -55,16 +55,16 @@ h1 { font-size: 4rem; line-height: 1; font-weight: 900; margin-bottom: 20px; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
 .item {
     height: 400px; background-size: cover; background-position: center; border-radius: 4px;
-    position: relative; overflow: hidden; display: block; text-decoration: none;
+    position: relative; overflow: hidden; display: block; text-decoration: none; color: white;
 }
 .overlay {
-    position: absolute; inset: 0; background: rgba(227, 6, 19, 0.7);
+    position: absolute; inset: 0; background: rgba(227, 6, 19, 0.75);
     display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: var(--transition);
+    opacity: 0; transition: var(--transition); z-index: 2;
 }
 .overlay span { color: white; font-weight: 800; font-size: 1.2rem; border: 2px solid white; padding: 10px 20px; }
 .item:hover .overlay { opacity: 1; }
-.item-desc { position: absolute; bottom: 20px; left: 20px; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.8); z-index: 5; }
+.item-desc { position: absolute; bottom: 20px; left: 20px; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.8); z-index: 1; }
 
 /* FOOTER */
 footer { background: #000; color: white; padding: 80px 0 40px; text-align: center; }
