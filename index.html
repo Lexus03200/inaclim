@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inaclim | Expert Génie Climatique Vichy</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +12,7 @@
     <header>
         <div class="container nav-wrapper">
             <a href="#" class="logo"><img src="logo.jpg" alt="Logo Inaclim" class="nav-logo">INA<span>CLIM</span></a>
-            <nav>
+            <nav id="nav-menu">
                 <a href="#services">Services</a>
                 <a href="#projets">Réalisations</a>
                 <a href="tel:0780452126" class="btn-call">07 80 45 21 26</a>
@@ -37,22 +36,22 @@
 
     <section id="services" class="expertise">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <h2>Une expertise multi-énergies</h2>
                 <div class="underline"></div>
             </div>
             <div class="grid-expertise">
-                <div class="card">
+                <div class="card reveal">
                     <span class="card-icon">🔥</span>
                     <h3>Chauffage</h3>
                     <p>Poêles à bois, pompes à chaleur et chaudières haute performance.</p>
                 </div>
-                <div class="card">
+                <div class="card reveal">
                     <span class="card-icon">❄️</span>
                     <h3>Climatisation</h3>
                     <p>Systèmes réversibles pour un confort été comme hiver.</p>
                 </div>
-                <div class="card">
+                <div class="card reveal">
                     <span class="card-icon">💧</span>
                     <h3>Plomberie</h3>
                     <p>Rénovation complète et dépannage d'urgence 24h/24.</p>
@@ -68,15 +67,15 @@
                 <div class="underline"></div>
             </div>
             <div class="gallery">
-                <a href="poele.jpg" target="_blank" class="item" style="background-image: url('poele.jpg');">
+                <a data-fslightbox="gallery" href="poele.jpg" class="item" style="background-image: url('poele.jpg');">
                     <div class="overlay"><span>🔍 Agrandir</span></div>
                     <p class="item-desc">Pose Poêle à bois</p>
                 </a>
-                <a href="ballon.jpg" target="_blank" class="item" style="background-image: url('ballon.jpg');">
+                <a data-fslightbox="gallery" href="ballon.jpg" class="item" style="background-image: url('ballon.jpg');">
                     <div class="overlay"><span>🔍 Agrandir</span></div>
                     <p class="item-desc">Installation Ballon d'eau chaude</p>
                 </a>
-                <a href="clim.jpg" target="_blank" class="item" style="background-image: url('clim.jpg');">
+                <a data-fslightbox="gallery" href="clim.jpg" class="item" style="background-image: url('clim.jpg');">
                     <div class="overlay"><span>🔍 Agrandir</span></div>
                     <p class="item-desc">Mise en service Climatisation</p>
                 </a>
@@ -88,16 +87,31 @@
         <div class="container">
             <div class="footer-info">
                 <h2>INACLIM</h2>
-                <p>Kévin Inacio</p>
+                <p><strong>Kévin Inacio</strong></p>
                 <p>📍 Vichy & Agglomération</p>
                 <p>📞 07 80 45 21 26</p>
-                <p>📧 inaclim03120@gmail.com</p>
+                <p>📧 <a href="mailto:inaclim03120@gmail.com" style="color:white; text-decoration:none;">inaclim03120@gmail.com</a></p>
+                <p style="margin-top:20px; color: #aaa;">🛡️ Assurance Décennale à jour</p>
             </div>
             <div class="copyright">
-                &copy; 2026 INACLIM. Tous droits réservés.
+                &copy; 2026 INACLIM. Tous droits réservés. <br>
+                <small>SIRET : [Ton Numéro Ici]</small>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.min.js"></script>
+    <script>
+        // Petit script pour faire apparaître les éléments au défilement
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
 </body>
 </html>
