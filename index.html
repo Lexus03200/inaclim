@@ -19,124 +19,93 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background: var(--gray); 
-            color: var(--dark); 
-            line-height: 1.5; 
-            overflow-x: hidden;
-            font-size: 16px; /* Évite le zoom auto sur iPhone */
-        }
-
+        body { font-family: 'Montserrat', sans-serif; background: var(--gray); color: var(--dark); line-height: 1.5; overflow-x: hidden; }
         .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER MOBILE OPTIMISÉ */
+        /* HEADER */
         header {
             position: fixed; width: 100%; top: 0; z-index: 1000;
             background: rgba(255, 255, 255, 0.98);
-            padding: 10px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
         }
         .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
 
-        .logo { display: flex; align-items: center; text-decoration: none; font-weight: 900; font-size: 1.3rem; color: var(--primary); }
-        .nav-logo { height: 40px; width: auto; margin-right: 8px; border-radius: 4px; }
+        .logo { display: flex; align-items: center; text-decoration: none; font-weight: 900; font-size: 1.3rem; color: var(--primary); z-index: 1100; }
+        .nav-logo { height: 45px; width: auto; margin-right: 8px; border-radius: 4px; }
         .logo span { color: var(--hot); }
 
-        /* BOUTON D'APPEL DIRECT MOBILE */
-        .btn-call-mobile {
-            background: var(--primary);
-            color: white !important;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        /* MENU HAMBURGER (MOBILE ONLY) */
+        .menu-btn {
+            display: flex; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; padding: 10px;
+        }
+        .menu-btn span {
+            display: block; width: 30px; height: 3px; background: var(--primary);
+            transition: var(--transition); border-radius: 3px;
         }
 
-        /* HERO SECTION MOBILE FRIENDLY */
+        /* Animation du X quand ouvert */
+        .menu-btn.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .menu-btn.open span:nth-child(2) { opacity: 0; }
+        .menu-btn.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        /* NAVIGATION LATERALE (MOBILE) */
+        nav {
+            position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+            background: var(--primary); display: flex; flex-direction: column;
+            justify-content: center; align-items: center; gap: 30px;
+            transition: var(--transition); z-index: 1050; box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+        }
+        nav.open { right: 0; }
+        nav a {
+            text-decoration: none; color: white; font-weight: 800;
+            font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .nav-call { background: var(--hot); padding: 15px 30px; border-radius: 50px; }
+
+        /* HERO SECTION */
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             background: linear-gradient(135deg, rgba(0,51,102,0.85) 0%, rgba(227,6,19,0.5) 100%), url('Kevin.jpg');
-            background-size: cover; 
-            background-position: center;
-            display: flex; 
-            align-items: center; 
-            color: white; 
-            padding: 120px 0 60px;
-            text-align: center;
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; color: white; padding: 100px 20px 40px; text-align: center;
         }
-        .hero h1 { font-size: 2.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
-        .hero p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
-
-        /* GROS BOUTONS POUR LE POUCE */
-        .cta-group { display: flex; flex-direction: column; gap: 15px; }
-        .btn-main, .btn-sec { 
-            width: 100%; 
-            padding: 18px; 
-            border-radius: 12px; 
-            text-decoration: none; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            font-size: 1rem;
-            text-align: center;
+        .hero h1 { font-size: 2.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 1.1rem; margin-bottom: 30px; }
+        .btn-main { 
+            display: block; background: var(--hot); color: white; padding: 20px; 
+            text-decoration: none; font-weight: 800; border-radius: 12px; text-transform: uppercase; 
         }
-        .btn-main { background: var(--hot); color: white; box-shadow: 0 4px 15px rgba(227,6,19,0.3); }
-        .btn-sec { background: white; color: var(--primary); }
 
-        /* SECTIONS */
+        /* SERVICES & SECTIONS */
         section { padding: 60px 0; }
-        h2 { font-size: 1.8rem; color: var(--primary); font-weight: 900; margin-bottom: 15px; text-align: center; }
-        .underline { width: 60px; height: 4px; background: linear-gradient(to right, var(--cold), var(--hot)); margin: 0 auto 25px; }
-
-        /* CARTES DE SERVICES MOBILE */
+        h2 { font-size: 2rem; color: var(--primary); text-align: center; margin-bottom: 10px; font-weight: 900; }
+        .underline { width: 60px; height: 5px; background: var(--hot); margin: 0 auto 30px; }
+        
         .grid-expertise { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .card { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 15px; 
-            text-align: center; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 6px solid var(--primary);
-        }
+        .card { background: white; padding: 30px; border-radius: 15px; text-align: center; border-left: 6px solid var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .card.hot { border-left-color: var(--hot); }
         .card.cold { border-left-color: var(--cold); }
-        .card-icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+        .card-icon { font-size: 3rem; display: block; margin-bottom: 10px; }
 
-        /* RÉALISATIONS - GRILLE ADAPTATIVE */
-        .gallery { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .item { 
-            height: 250px; 
-            border-radius: 12px; 
-            background-size: cover; 
-            background-position: center; 
-            position: relative;
-            overflow: hidden;
-            display: block;
-        }
-        .item-desc { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.7); color: white; padding: 10px; font-weight: 700; font-size: 0.9rem; }
+        /* FOOTER */
+        footer { background: #0a192f; color: white; padding: 40px 20px; text-align: center; }
 
-        /* FOOTER CLAIR */
-        footer { background: #0a192f; color: white; padding: 40px 0; text-align: center; }
-        .footer-details p { margin-bottom: 10px; font-size: 1rem; }
-
-        /* ANIMATIONS RÉDUITES POUR MOBILE (BATTERIE) */
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.5s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* --- AJUSTEMENTS TABLETTES ET PC --- */
-        @media (min-width: 768px) {
-            .hero h1 { font-size: 4rem; }
-            .cta-group { flex-direction: row; justify-content: center; }
-            .btn-main, .btn-sec { width: auto; padding: 18px 40px; }
+        /* DESKTOP OPTIMISATION (ÉCRANS LARGES) */
+        @media (min-width: 992px) {
+            .menu-btn { display: none; }
+            nav {
+                position: static; width: auto; height: auto; background: transparent;
+                flex-direction: row; right: 0; box-shadow: none; gap: 25px;
+            }
+            nav a { color: var(--primary); font-size: 0.9rem; }
+            nav a:hover { color: var(--hot); }
+            .nav-call { color: white !important; padding: 10px 20px; }
+            .hero h1 { font-size: 4.5rem; }
+            .hero p { font-size: 1.5rem; }
+            .btn-main { display: inline-block; padding: 20px 50px; }
             .grid-expertise { grid-template-columns: repeat(3, 1fr); }
-            .gallery { grid-template-columns: repeat(3, 1fr); }
             .card { border-left: none; border-top: 6px solid var(--primary); }
-            .logo { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -147,65 +116,58 @@
             <a href="#" class="logo">
                 <img src="logo.jpg" alt="Logo Inaclim" class="nav-logo">INA<span>CLIM</span>
             </a>
-            <a href="tel:0780452126" class="btn-call-mobile">📞 APPELER</a>
+            
+            <div class="menu-btn" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav id="navMenu">
+                <a href="#about">À Propos</a>
+                <a href="#services">Services</a>
+                <a href="#projets">Réalisations</a>
+                <a href="tel:0780452126" class="nav-call">📞 Appeler</a>
+            </nav>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <span style="background: var(--cold); padding: 4px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; letter-spacing: 1px;">VICHY & AGGLO</span>
-            <h1>Énergie & <br><span style="color: var(--cold);">Confort</span></h1>
-            <p>Plomberie, Chauffage et Climatisation par <strong>Kévin Inacio</strong>.</p>
-            <div class="cta-group">
-                <a href="mailto:inaclim03120@gmail.com" class="btn-main">Demander un Devis</a>
-                <a href="#projets" class="btn-sec">Nos Travaux</a>
-            </div>
+            <span style="background: var(--cold); padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; letter-spacing: 1px;">VICHY & AGGLO</span>
+            <h1>Génie <br><span style="color: var(--cold);">Climatique</span></h1>
+            <p>Installation et dépannage par <strong>Kévin Inacio</strong>. Plomberie, Chauffage, Climatisation.</p>
+            <a href="mailto:inaclim03120@gmail.com" class="btn-main">Demander un Devis</a>
         </div>
     </section>
 
     <section id="about">
-        <div class="container reveal">
+        <div class="container">
             <h2>Votre Artisan</h2>
             <div class="underline"></div>
-            <p style="text-align: center; color: #555;">Kévin Inacio, 26 ans. Passionné par le génie thermique, je mets mon savoir-faire de <strong>plombier-chauffagiste</strong> au service de vos projets pour des installations durables et soignées.</p>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto; color: #444;">
+                Bonjour ! Je suis Kévin Inacio. À 26 ans, je mets ma rigueur de plombier-chauffagiste au service de votre confort. Avec <strong>Inaclim</strong>, je vous garantis des solutions durables et un service de proximité sur Vichy.
+            </p>
         </div>
     </section>
 
-    <section id="services" style="background: var(--white);">
+    <section id="services" style="background: white;">
         <div class="container">
             <div class="grid-expertise">
-                <div class="card hot reveal">
+                <div class="card hot">
                     <span class="card-icon">🔥</span>
                     <h3>Chauffage</h3>
-                    <p>Poêles à bois, granulés et pompes à chaleur.</p>
+                    <p>Poêles à bois et pompes à chaleur.</p>
                 </div>
-                <div class="card cold reveal">
+                <div class="card cold">
                     <span class="card-icon">❄️</span>
                     <h3>Climatisation</h3>
-                    <p>Installation et entretien de clim réversible.</p>
+                    <p>Systèmes réversibles été/hiver.</p>
                 </div>
-                <div class="card reveal">
+                <div class="card">
                     <span class="card-icon">💧</span>
                     <h3>Plomberie</h3>
-                    <p>Salles de bain, ballons d'eau chaude et dépannage.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projets">
-        <div class="container">
-            <h2>Réalisations</h2>
-            <div class="underline"></div>
-            <div class="gallery">
-                <div class="item reveal" style="background-image: url('poele.jpg');">
-                    <p class="item-desc">Chauffage</p>
-                </div>
-                <div class="item reveal" style="background-image: url('ballon.jpg');">
-                    <p class="item-desc">Plomberie</p>
-                </div>
-                <div class="item reveal" style="background-image: url('clim.jpg');">
-                    <p class="item-desc">Climatisation</p>
+                    <p>Salles de bain et ballons d'eau chaude.</p>
                 </div>
             </div>
         </div>
@@ -213,23 +175,33 @@
 
     <footer>
         <div class="container">
-            <h2 style="color: var(--cold); margin-bottom: 20px;">INACLIM</h2>
-            <div class="footer-details">
-                <p><strong>Kévin Inacio</strong></p>
-                <p>📞 <a href="tel:0780452126" style="color: white; text-decoration: none;">07 80 45 21 26</a></p>
-                <p>📧 inaclim03120@gmail.com</p>
-                <p style="opacity: 0.6; font-size: 0.8rem; margin-top: 20px;">Artisan assuré - Garantie Décennale</p>
-            </div>
+            <h2 style="color: var(--cold);">INACLIM</h2>
+            <p>07 80 45 21 26 | inaclim03120@gmail.com</p>
+            <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.7;">© 2026 Inaclim - Assurance Décennale à jour</p>
         </div>
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('nav a');
+
+        // Basculer le menu
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            navMenu.classList.toggle('open');
+            // Empêche le scroll quand le menu est ouvert
+            document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto';
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('open');
+                navMenu.classList.remove('open');
+                document.body.style.overflow = 'auto';
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        });
     </script>
 </body>
 </html>
