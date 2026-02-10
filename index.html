@@ -28,7 +28,7 @@
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER & LOGO FIX */
+        /* HEADER & LOGO */
         header {
             position: fixed; width: 100%; top: 0; z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
@@ -51,7 +51,7 @@
             height: 50px; 
             width: auto; 
             border-radius: 5px; 
-            margin-right: 12px; /* Espace entre l'image et le texte */
+            margin-right: 12px;
         }
         .logo span { color: var(--accent); margin-left: 0; }
 
@@ -59,9 +59,9 @@
         nav a:hover { color: var(--accent); }
         .btn-call { background: var(--primary); color: white !important; padding: 10px 20px; border-radius: 4px; }
 
-        /* HERO SECTION AVEC KEVIN.JPG */
+        /* HERO SECTION */
         .hero {
-            min-height: 90vh;
+            min-height: 80vh;
             background: linear-gradient(rgba(0,45,90,0.7), rgba(0,0,0,0.6)), url('Kevin.jpg');
             background-size: cover; 
             background-position: center; 
@@ -75,10 +75,16 @@
         .badge { background: var(--accent); padding: 5px 12px; font-weight: 800; font-size: 0.8rem; letter-spacing: 1px; display: inline-block; margin-bottom: 15px; }
         .btn-main { background: var(--accent); color: white; padding: 18px 35px; text-decoration: none; font-weight: 800; border-radius: 4px; display: inline-block; transition: var(--transition); }
         .btn-sec { background: white; color: var(--primary); padding: 18px 35px; text-decoration: none; font-weight: 800; border-radius: 4px; margin-left: 10px; display: inline-block; transition: var(--transition); }
-        .btn-main:hover, .btn-sec:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+
+        /* NOUVELLE SECTION A PROPOS */
+        .about { padding: 100px 0; background: var(--white); }
+        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .about h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; font-weight: 900; }
+        .about p { font-size: 1.1rem; color: #444; margin-bottom: 15px; text-align: justify; }
+        .highlight { color: var(--accent); font-weight: 700; }
 
         /* SERVICES */
-        .expertise { padding: 100px 0; background: white; }
+        .expertise { padding: 100px 0; background: var(--gray); }
         .section-header { text-align: center; margin-bottom: 50px; }
         .underline { width: 60px; height: 5px; background: var(--accent); margin: 15px auto; }
         .grid-expertise { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -106,18 +112,16 @@
         footer { background: #000; color: white; padding: 80px 0 40px; text-align: center; }
         .footer-info h2 { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
 
-        /* ANIMATIONS REVEAL */
+        /* ANIMATIONS */
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-wrapper { flex-direction: column; gap: 15px; }
             nav a { margin: 0 10px; font-size: 0.8rem; }
             .hero { text-align: center; padding-top: 140px; }
             .cta-group { display: flex; flex-direction: column; gap: 15px; }
             .btn-sec { margin-left: 0; }
-            h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -127,6 +131,7 @@
         <div class="container nav-wrapper">
             <a href="#" class="logo"><img src="logo.jpg" alt="Logo Inaclim" class="nav-logo">INA<span>CLIM</span></a>
             <nav>
+                <a href="#about">À propos</a>
                 <a href="#services">Services</a>
                 <a href="#projets">Réalisations</a>
                 <a href="tel:0780452126" class="btn-call">07 80 45 21 26</a>
@@ -139,11 +144,25 @@
             <div class="hero-content">
                 <span class="badge">Artisan Local - Vichy (03)</span>
                 <h1>Le confort thermique <br><strong>nouvelle génération.</strong></h1>
-                <p>Kévin Inacio, votre expert en plomberie, chauffage et climatisation. Installation durable et dépannage urgent.</p>
+                <p>Expert en plomberie, chauffage et climatisation à Vichy.</p>
                 <div class="cta-group">
                     <a href="mailto:inaclim03120@gmail.com" class="btn-main">Demander un devis</a>
                     <a href="#projets" class="btn-sec">Mes réalisations</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content reveal">
+                <h2>Bonjour à tous ! Moi, c'est <span class="highlight">Kévin Inacio</span>.</h2>
+                <div class="underline"></div>
+                <p>À 26 ans, j'ai décidé de mettre ma passion et mon savoir-faire au service de votre confort en créant <strong>Inaclim</strong>.</p>
+                <p>Mon parcours ? J'ai commencé sur le terrain en tant que plombier-chauffagiste. Ce premier métier m'a appris la rigueur, le sens du détail et l'importance d'une installation bien faite.</p>
+                <p>Aujourd'hui, avec Inaclim, je vous accompagne dans tous vos projets de <strong>chauffage, climatisation et plomberie</strong> sur le secteur de <strong>Vichy</strong>.</p>
+                <p>Mon objectif : vous apporter des solutions durables et un service de proximité. Je serais ravi de travailler avec vous et de vous conseiller pour vos futurs travaux !</p>
+                <p><strong>À très vite,</strong></p>
             </div>
         </div>
     </section>
