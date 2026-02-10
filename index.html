@@ -2,286 +2,359 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>INACLIM | Plombier Chauffagiste Vichy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INACLIM | Expert Génie Climatique & Plomberie Vichy</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --navy: #0f172a;       
-            --blue: #0284c7;       
-            --red: #ef4444;        
+            --primary: #0f172a;    /* Navy Sombre */
+            --accent: #ef4444;     /* Rouge Action */
+            --blue: #0ea5e9;       /* Bleu Confiance */
+            --light: #f8fafc;
             --white: #ffffff;
             --text: #334155;
-            --radius: 8px;
-            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --radius: 12px;
+            --shadow: 0 10px 30px -5px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Manrope', sans-serif; color: var(--text); background: #f8fafc; overflow-x: hidden; }
-        
-        /* --- HEADER PC OPTIMISÉ --- */
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); background: var(--light); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+
+        /* --- NAVIGATION --- */
         header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            padding: 20px 0; transition: var(--transition);
+        }
+        header.scrolled {
             background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 0 20px;
-            height: 80px; /* Hauteur fixe pour la stabilité */
-            display: flex; align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 12px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #eee;
         }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo img { height: 45px; border-radius: 6px; }
+        .logo span { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--primary); letter-spacing: -1px; }
+        .logo span b { color: var(--accent); }
 
-        .nav-container {
-            width: 100%; max-width: 1200px; margin: 0 auto;
-            display: flex; justify-content: space-between; align-items: center;
+        nav { display: flex; align-items: center; gap: 35px; }
+        nav a { text-decoration: none; color: var(--primary); font-weight: 700; font-size: 0.95rem; transition: 0.3s; }
+        nav a:hover { color: var(--blue); }
+        .btn-phone { 
+            background: var(--primary); color: white !important; padding: 12px 25px; 
+            border-radius: 50px; display: flex; align-items: center; gap: 10px;
         }
-
-        /* 1. Logo */
-        .logo-group { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-img { height: 45px; border-radius: 4px; }
-        .logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--navy); letter-spacing: -1px; }
-        .logo-text span { color: var(--red); }
-
-        /* 2. Menu Central (Desktop) */
-        .desktop-menu { display: flex; gap: 40px; }
-        .desktop-menu a {
-            text-decoration: none; color: var(--navy); font-weight: 600; font-size: 1rem;
-            position: relative; padding: 5px 0; transition: 0.3s;
-        }
-        /* Petit trait rouge au survol */
-        .desktop-menu a::after {
-            content: ''; position: absolute; width: 0; height: 3px; bottom: 0; left: 0;
-            background: var(--red); transition: width 0.3s; border-radius: 2px;
-        }
-        .desktop-menu a:hover::after { width: 100%; }
-        .desktop-menu a:hover { color: var(--red); }
-
-        /* 3. Bouton Appel (Droite) */
-        .header-cta {
-            background: var(--navy); color: white; padding: 12px 25px;
-            border-radius: 50px; font-weight: 700; text-decoration: none;
-            transition: 0.3s; display: flex; align-items: center; gap: 8px;
-        }
-        .header-cta:hover { background: var(--blue); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(2, 132, 199, 0.3); }
-
-        /* Mobile Hamburger */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
-        .hamburger span { width: 25px; height: 3px; background: var(--navy); border-radius: 3px; }
+        .btn-phone:hover { background: var(--blue); transform: translateY(-2px); }
 
         /* --- HERO SECTION --- */
         .hero {
-            position: relative; height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center;
-            /* Image centrée vers le haut pour voir le visage */
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.7) 100%), url('Kevin.jpg');
-            background-size: cover; background-position: 50% 25%; background-attachment: fixed;
-            color: white; padding: 0 20px; margin-top: 80px; /* Compenser le header fixe */
+            height: 95vh; min-height: 700px;
+            background: linear-gradient(rgba(15,23,42,0.8), rgba(15,23,42,0.6)), url('Kevin.jpg');
+            background-size: cover; background-position: center 25%; background-attachment: fixed;
+            display: flex; align-items: center; color: white; padding-top: 80px;
         }
-        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 20px; font-weight: 900; }
-        .hero p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .btn-hero { background: var(--red); color: white; padding: 15px 35px; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; transition: 0.3s; }
-        .btn-hero:hover { background: #dc2626; transform: scale(1.05); }
+        .hero-content { max-width: 800px; }
+        .hero-badge { 
+            background: rgba(239, 68, 68, 0.2); border: 1px solid var(--accent); color: var(--accent);
+            padding: 6px 15px; border-radius: 50px; font-weight: 800; font-size: 0.8rem; 
+            text-transform: uppercase; margin-bottom: 25px; display: inline-block;
+        }
+        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 25px; }
+        .hero p { font-size: 1.25rem; opacity: 0.9; margin-bottom: 40px; font-weight: 300; }
+        .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; }
+        .btn-main { background: var(--accent); color: white; padding: 20px 40px; border-radius: 8px; text-decoration: none; font-weight: 800; transition: var(--transition); box-shadow: 0 15px 30px rgba(239,68,68,0.3); }
+        .btn-main:hover { transform: translateY(-5px); background: #dc2626; }
 
-        /* --- SECTIONS GÉNÉRALES --- */
-        section { padding: 80px 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        h2 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; color: var(--navy); text-align: center; margin-bottom: 50px; font-weight: 800; }
+        /* --- STATS BAR --- */
+        .stats-bar {
+            background: white; margin-top: -60px; position: relative; z-index: 10;
+            border-radius: var(--radius); box-shadow: var(--shadow); padding: 40px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;
+        }
+        .stat-item { text-align: center; }
+        .stat-item h3 { font-size: 2.5rem; color: var(--blue); font-family: 'Montserrat', sans-serif; }
+        .stat-item p { font-weight: 700; color: var(--primary); text-transform: uppercase; font-size: 0.8rem; opacity: 0.6; }
 
-        /* --- SERVICES (Expertise) --- */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* --- SERVICES DÉTAILLÉS --- */
+        section { padding: 120px 0; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 70px; }
+        .section-header h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
+        .underline { width: 70px; height: 5px; background: var(--accent); margin: 0 auto; border-radius: 10px; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .service-card {
-            background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0;
-            transition: 0.3s; text-align: center;
+            background: white; padding: 50px 40px; border-radius: var(--radius); 
+            border: 1px solid #f1f5f9; transition: var(--transition);
         }
-        .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--blue); }
-        .icon { font-size: 3rem; margin-bottom: 20px; display: block; }
-        .service-card h3 { color: var(--navy); margin-bottom: 10px; font-size: 1.3rem; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); border-color: var(--blue); }
+        .s-icon { width: 70px; height: 70px; background: #eff6ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--blue); margin-bottom: 30px; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 20px; color: var(--primary); }
+        .service-list { list-style: none; }
+        .service-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-weight: 500; color: #64748b; }
+        .service-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--blue); font-size: 0.8rem; }
 
-        /* --- RÉALISATIONS (GALERIE CLIQUABLE) --- */
-        .gallery-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; 
+        /* --- POURQUOI NOUS --- */
+        .why-us { background: var(--primary); color: white; }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .why-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; display: block; }
+        .why-item h4 { font-size: 1.3rem; margin-bottom: 15px; }
+        .why-item p { opacity: 0.7; font-size: 0.95rem; }
+
+        /* --- RÉALISATIONS (GALERIE) --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 25px; }
+        .gallery-item {
+            height: 400px; border-radius: var(--radius); overflow: hidden; position: relative;
+            cursor: pointer; box-shadow: var(--shadow); text-decoration: none; display: block;
         }
-        
-        /* Lien qui entoure l'image (pour le clic) */
-        .gallery-link {
-            display: block; text-decoration: none; border-radius: 12px; overflow: hidden;
-            position: relative; height: 350px; box-shadow: var(--shadow);
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .gallery-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,23,42,0.95), transparent);
+            padding: 30px; display: flex; flex-direction: column; justify-content: flex-end;
+            transition: 0.4s;
         }
-        
-        .gallery-img {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
-        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .tag { background: var(--accent); color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; width: fit-content; margin-bottom: 10px; }
+        .gallery-item h4 { color: white; font-size: 1.4rem; font-family: 'Montserrat', sans-serif; }
 
-        /* Overlay texte */
-        .img-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding: 80px 20px 20px; /* Grand padding top pour le dégradé */
-            color: white; transform: translateY(0); transition: 0.3s;
-        }
+        /* --- MARQUES PARTENAIRES --- */
+        .brands { text-align: center; padding: 60px 0; background: white; border-top: 1px solid #eee; }
+        .brand-logos { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 40px; opacity: 0.5; filter: grayscale(1); }
+        .brand-logos span { font-size: 1.5rem; font-weight: 900; color: var(--primary); }
 
-        .gallery-link:hover .gallery-img { transform: scale(1.1); }
-        .gallery-title { font-weight: 800; font-size: 1.2rem; display: block; margin-bottom: 5px; }
-        .gallery-tag { background: var(--red); font-size: 0.75rem; padding: 3px 10px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
+        /* --- FOOTER --- */
+        footer { background: #0b1120; color: #94a3b8; padding: 100px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px; }
+        .footer-logo span { color: white; font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 900; }
+        .footer-title { color: white; font-weight: 800; margin-bottom: 25px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+        .footer-links a { display: block; color: #94a3b8; text-decoration: none; margin-bottom: 12px; transition: 0.3s; }
+        .footer-links a:hover { color: white; padding-left: 5px; }
 
-        /* --- FOOTER & LÉGAL --- */
-        footer { background: var(--navy); color: #94a3b8; padding: 60px 20px; text-align: center; }
-        .legal-links span { cursor: pointer; margin: 0 10px; text-decoration: underline; font-size: 0.9rem; }
-        
-        /* Modale */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
-        .modal-content { background: white; margin: 10% auto; padding: 30px; width: 90%; max-width: 600px; border-radius: 8px; position: relative; }
-        .close { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; }
-
-        /* RESPONSIVE */
+        /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
-            .desktop-menu, .header-cta { display: none; } /* On cache le menu PC */
-            .hamburger { display: flex; }
-            
-            /* Menu Mobile Déroulant */
-            .mobile-menu {
-                position: fixed; top: 80px; left: 0; width: 100%; background: white;
-                padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                display: none; flex-direction: column; gap: 20px; text-align: center;
-            }
-            .mobile-menu.open { display: flex; }
-            .mobile-menu a { font-size: 1.2rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+            nav { display: none; }
+            .hero { text-align: center; }
+            .hero-btns { justify-content: center; }
+            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo-group">
-                <img src="logo.jpg" alt="Inaclim" class="logo-img">
-                <span class="logo-text">INA<span>CLIM</span></span>
+    <header id="mainHeader">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <img src="logo.jpg" alt="Logo Inaclim">
+                <span>INA<b>CLIM</b></span>
             </a>
-
-            <nav class="desktop-menu">
-                <a href="#about">À Propos</a>
-                <a href="#services">Prestations</a>
+            <nav>
+                <a href="#services">Nos Services</a>
+                <a href="#about">Pourquoi nous ?</a>
                 <a href="#projets">Réalisations</a>
-                <a href="#faq">Questions</a>
+                <a href="tel:0780452126" class="btn-phone"><i class="fas fa-phone"></i> 07 80 45 21 26</a>
             </nav>
-
-            <a href="tel:0780452126" class="header-cta">
-                <span>📞</span> 07 80 45 21 26
-            </a>
-
-            <div class="hamburger" onclick="toggleMobileMenu()">
-                <span></span><span></span><span></span>
-            </div>
         </div>
     </header>
 
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#about" onclick="toggleMobileMenu()">À Propos</a>
-        <a href="#services" onclick="toggleMobileMenu()">Prestations</a>
-        <a href="#projets" onclick="toggleMobileMenu()">Réalisations</a>
-        <a href="tel:0780452126" style="color: var(--red);">Appeler maintenant</a>
-    </div>
-
     <section class="hero">
-        <div>
-            <h1>Le Confort Thermique <br> <span style="color: var(--blue);">Nouvelle Génération</span></h1>
-            <p>Installation et dépannage à Vichy et alentours. <br>Votre artisan de confiance : Kévin Inacio.</p>
-            <a href="mailto:inaclim03120@gmail.com" class="btn-hero">Demander un Devis Gratuit</a>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Artisan Expert - Vichy (03)</span>
+                <h1>L'excellence thermique <br>au service de votre habitat.</h1>
+                <p>Kévin Inacio vous accompagne dans l'installation, l'entretien et le dépannage de vos systèmes de chauffage et climatisation avec une exigence de qualité absolue.</p>
+                <div class="hero-btns">
+                    <a href="mailto:inaclim03120@gmail.com" class="btn-main">Demander un devis gratuit</a>
+                </div>
+            </div>
         </div>
     </section>
+
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <h3>10+</h3>
+                <p>Années d'Expérience</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Dépannages d'Urgence</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Garantie Décennale</p>
+            </div>
+            <div class="stat-item">
+                <h3>03</h3>
+                <p>Secteur Vichy & Allier</p>
+            </div>
+        </div>
+    </div>
 
     <section id="services">
         <div class="container">
-            <h2>Nos Expertises</h2>
+            <div class="section-header">
+                <h2>Une expertise complète</h2>
+                <div class="underline"></div>
+            </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <span class="icon">🔥</span>
+                    <div class="s-icon"><i class="fas fa-fire"></i></div>
                     <h3>Chauffage</h3>
-                    <p>Poêles à bois, Granulés, PAC.</p>
+                    <ul class="service-list">
+                        <li>Installation Pompes à Chaleur (PAC)</li>
+                        <li>Pose de Poêles à Bois & Granulés</li>
+                        <li>Remplacement de Chaudières</li>
+                        <li>Désembouage & Entretien</li>
+                    </ul>
                 </div>
                 <div class="service-card">
-                    <span class="icon">❄️</span>
+                    <div class="s-icon"><i class="fas fa-snowflake"></i></div>
                     <h3>Climatisation</h3>
-                    <p>Froid et Réversible.</p>
+                    <ul class="service-list">
+                        <li>Systèmes Mono & Multi-split</li>
+                        <li>Climatisation Gainable (invisible)</li>
+                        <li>Entretien annuel & Recharge</li>
+                        <li>Dépannage toutes marques</li>
+                    </ul>
                 </div>
                 <div class="service-card">
-                    <span class="icon">💧</span>
+                    <div class="s-icon"><i class="fas fa-droplet"></i></div>
                     <h3>Plomberie</h3>
-                    <p>Sanitaire et Chauffe-eau.</p>
+                    <ul class="service-list">
+                        <li>Rénovation Salle de Bain</li>
+                        <li>Installation Chauffe-eau (Cumulus)</li>
+                        <li>Recherche & Réparation de fuites</li>
+                        <li>Remplacement Robinetterie</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projets" style="background: #e2e8f0;">
+    <section id="about" class="why-us">
         <div class="container">
-            <h2>Dernières Réalisations</h2>
-            <p style="text-align: center; margin-bottom: 30px;">Cliquez sur les photos pour agrandir</p>
-            
-            <div class="gallery-grid">
-                
-                <a href="poele.jpg" class="gallery-link" data-fslightbox="gallery">
-                    <img src="poele.jpg" alt="Poêle à bois" class="gallery-img">
-                    <div class="img-overlay">
-                        <span class="gallery-tag">Chauffage</span>
-                        <span class="gallery-title">Pose de poêle à bois</span>
-                    </div>
-                </a>
-
-                <a href="ballon.jpg" class="gallery-link" data-fslightbox="gallery">
-                    <img src="ballon.jpg" alt="Ballon eau chaude" class="gallery-img">
-                    <div class="img-overlay">
-                        <span class="gallery-tag">Urgence</span>
-                        <span class="gallery-title">Pose en urgence d'un ballon d'eau chaude</span>
-                    </div>
-                </a>
-
-                <a href="clim.jpg" class="gallery-link" data-fslightbox="gallery">
-                    <img src="clim.jpg" alt="Climatisation" class="gallery-img">
-                    <div class="img-overlay">
-                        <span class="gallery-tag">Climatisation</span>
-                        <span class="gallery-title">Installation unité murale</span>
-                    </div>
-                </a>
-
+            <div class="section-header">
+                <h2 style="color:white">Pourquoi choisir INACLIM ?</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="why-grid">
+                <div class="why-item">
+                    <i class="fas fa-shield-halved"></i>
+                    <h4>Sérénité Totale</h4>
+                    <p>Travaux couverts par une Assurance Décennale et une Responsabilité Civile Professionnelle.</p>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-handshake"></i>
+                    <h4>Artisan Local</h4>
+                    <p>Un interlocuteur unique (Kévin Inacio) pour un suivi personnalisé de A à Z.</p>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Réactivité</h4>
+                    <p>Basé à Vichy, nous intervenons rapidement pour vos urgences plomberie et chauffage.</p>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-broom"></i>
+                    <h4>Chantier Propre</h4>
+                    <p>Le respect de votre intérieur est notre priorité. Finitions soignées et nettoyage après travaux.</p>
+                </div>
             </div>
         </div>
     </section>
+
+    <section id="projets">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos dernières réalisations</h2>
+                <p>Cliquez sur les photos pour agrandir</p>
+                <div class="underline"></div>
+            </div>
+            <div class="gallery-grid">
+                <a href="poele.jpg" class="gallery-item" data-fslightbox="gallery">
+                    <img src="poele.jpg" alt="Pose de poêle à bois">
+                    <div class="gallery-overlay">
+                        <span class="tag">Chauffage</span>
+                        <h4>Pose de poêle à bois</h4>
+                    </div>
+                </a>
+                <a href="ballon.jpg" class="gallery-item" data-fslightbox="gallery">
+                    <img src="ballon.jpg" alt="Pose en urgence d'un ballon d'eau chaude">
+                    <div class="gallery-overlay">
+                        <span class="tag">Urgence / Plomberie</span>
+                        <h4>Pose en urgence d'un ballon d'eau chaude</h4>
+                    </div>
+                </a>
+                <a href="clim.jpg" class="gallery-item" data-fslightbox="gallery">
+                    <img src="clim.jpg" alt="Climatisation">
+                    <div class="gallery-overlay">
+                        <span class="tag">Climatisation</span>
+                        <h4>Installation unité murale réversible</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="brands">
+        <div class="container">
+            <p style="margin-bottom:30px; font-weight:700; color:var(--primary); opacity:0.5">MARQUES INSTALLÉES & ENTRETENUES</p>
+            <div class="brand-logos">
+                <span>ATLANTIC</span>
+                <span>DAIKIN</span>
+                <span>SAUNIER DUVAL</span>
+                <span>MITSUBISHI</span>
+                <span>VIESSMANN</span>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
-            <h3 style="color: white; margin-bottom: 10px;">INACLIM</h3>
-            <p>07 80 45 21 26 | Vichy (03)</p>
-            <div class="legal-links" style="margin-top: 20px;">
-                <span onclick="document.getElementById('legal').style.display='block'">Mentions Légales</span> | 
-                <span onclick="document.getElementById('confid').style.display='block'">Confidentialité</span>
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo" style="margin-bottom:20px">
+                        <span>INA<b>CLIM</b></span>
+                    </div>
+                    <p>Votre expert en confort thermique à Vichy. <br>Artisan qualifié pour tous vos projets de chauffage et climatisation.</p>
+                </div>
+                <div>
+                    <div class="footer-title">Contact</div>
+                    <div class="footer-links">
+                        <p>📞 07 80 45 21 26</p>
+                        <p>📧 inaclim03120@gmail.com</p>
+                        <p>📍 Vichy & Agglomération</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <div class="footer-links">
+                        <a href="#services">Prestations</a>
+                        <a href="#projets">Réalisations</a>
+                        <a href="mailto:inaclim03120@gmail.com">Demander un devis</a>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.05); padding-top:30px; text-align:center; font-size:0.8rem">
+                © 2026 INACLIM. Tous droits réservés. Mentions Légales | Politique de confidentialité.
             </div>
         </div>
     </footer>
 
-    <div id="legal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="document.getElementById('legal').style.display='none'">&times;</span>
-            <h3>Mentions Légales</h3>
-            <p>Éditeur : Kévin Inacio (Inaclim)<br>Adresse : Vichy, France<br>Assurance Décennale à jour.</p>
-        </div>
-    </div>
-    <div id="confid" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="document.getElementById('confid').style.display='none'">&times;</span>
-            <h3>Confidentialité</h3>
-            <p>Les données collectées (téléphone/mail) servent uniquement à répondre à vos demandes de devis.</p>
-        </div>
-    </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.min.js"></script>
-    
     <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('open');
-        }
+        // Effet Header au Scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
     </script>
-
 </body>
 </html>
